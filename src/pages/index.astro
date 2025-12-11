@@ -2,15 +2,13 @@
 import "@/styles/globals.css"
 import Layout from "@/layouts/Layout.astro"
 import PropertyList from "@/components/PropertyList.astro"
-import Hero from "@/components/Hero.astro"
+import CategoryFilters from "@/components/CategoryFilters.astro"
 ---
 
 <Layout
-	title="VendeTuCasa"
-	description="Compra las mejores propiedades de la ciudad al mejor precio de mercado, contactanos por WhatsApp de Lunes a Viernes de 8hs a 17hs"
+	title="Inmobiliaria - Encuentra tu proximo hogar"
+	description="Descubri las mejores propiedades de la ciudad. Casas, departamentos, terrenos y mas. Contactanos por WhatsApp de Lunes a Viernes de 8hs a 17hs."
 >
-	<Hero />
-	<main>
-		<PropertyList />
-	</main>
+	<CategoryFilters />
+	<PropertyList />
 </Layout>
