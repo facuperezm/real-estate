@@ -21,7 +21,7 @@ const { title, description } = Astro.props
 		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
 		<meta name="robots" content="nofollow, noindex" />
 		<meta name="theme-color" content="#FF385C" />
-		<title transition:animate="slide">{title}</title>
+		<title>{title}</title>
 		<slot name="preload" />
 		<ViewTransitions />
 	</head>
@@ -35,12 +35,57 @@ const { title, description } = Astro.props
 			html {
 				font-family: "Montserrat Variable", system-ui, sans-serif;
 				font-size: 14px;
-				scroll-behavior: smooth;
 			}
 
 			@media (min-width: 768px) {
 				html {
 					font-size: 15px;
+				}
+			}
+
+			/* View Transitions - smoother animations */
+			::view-transition-old(root),
+			::view-transition-new(root) {
+				animation-duration: 200ms;
+				animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+			}
+
+			::view-transition-old(root) {
+				animation-name: fade-out;
+			}
+
+			::view-transition-new(root) {
+				animation-name: fade-in;
+			}
+
+			/* Property image transitions - smooth morph */
+			[style*="view-transition-name"] {
+				will-change: transform;
+			}
+
+			@keyframes fade-out {
+				from {
+					opacity: 1;
+				}
+				to {
+					opacity: 0;
+				}
+			}
+
+			@keyframes fade-in {
+				from {
+					opacity: 0;
+				}
+				to {
+					opacity: 1;
+				}
+			}
+
+			/* Reduce motion for users who prefer it */
+			@media (prefers-reduced-motion: reduce) {
+				::view-transition-old(root),
+				::view-transition-new(root) {
+					animation-duration: 0ms;
 				}
 			}
 		</style>

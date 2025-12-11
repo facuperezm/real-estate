@@ -75,12 +75,16 @@ const formattedPrice = property?.price
 				{
 					propertyPhotos.map((propertyImg, index) => (
 						<div class="relative w-full flex-none shrink-0">
-							<img
-								src={`${propertyImg.fields.file.url}`}
-								alt={`Foto ${index + 1} de ${property?.title}`}
-								class="h-[300px] w-full snap-center object-cover"
+							<div
 								transition:name={index === 0 ? `property-image-${id}` : undefined}
-							/>
+								class="h-[300px] w-full overflow-hidden"
+							>
+								<img
+									src={`${propertyImg.fields.file.url}`}
+									alt={`Foto ${index + 1} de ${property?.title}`}
+									class="size-full snap-center object-cover"
+								/>
+							</div>
 							<div class="absolute bottom-4 right-4 rounded-full bg-black/70 px-3 py-1 text-sm font-medium text-white">
 								{index + 1}/{propertyPhotos.length}
 							</div>
@@ -106,12 +110,16 @@ const formattedPrice = property?.price
 									]}
 									target="_blank"
 								>
-									<img
-										src={`${propertyImg.fields.file.url}`}
-										alt={`Foto ${index + 1} de ${property?.title}`}
-										class="size-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:brightness-90"
-										transition:name={index === 0 ? `property-image-${id}` : undefined}
-									/>
+									<div
+										transition:name={isMain ? `property-image-${id}` : undefined}
+										class="size-full"
+									>
+										<img
+											src={`${propertyImg.fields.file.url}`}
+											alt={`Foto ${index + 1} de ${property?.title}`}
+											class="size-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:brightness-90"
+										/>
+									</div>
 								</a>
 							)
 						})
