@@ -22,7 +22,7 @@ const DEFAULT_CONTAINER_STYLE = {
 	borderRadius: "12px",
 }
 
-export default function Map({ location, zoom = 14, height = "400px" }: MapProps) {
+export default function PropertyMap({ location, zoom = 14, height = "400px" }: MapProps) {
 	const { isLoaded, loadError } = useLoadScript({
 		googleMapsApiKey: import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY,
 	})
@@ -43,6 +43,7 @@ export default function Map({ location, zoom = 14, height = "400px" }: MapProps)
 						strokeLinecap="round"
 						strokeLinejoin="round"
 						className="size-8 text-airbnb-gray-300"
+						aria-hidden="true"
 					>
 						<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
 						<circle cx="12" cy="10" r="3" />
@@ -69,6 +70,7 @@ export default function Map({ location, zoom = 14, height = "400px" }: MapProps)
 						strokeLinecap="round"
 						strokeLinejoin="round"
 						className="size-8 text-airbnb-gray-300"
+						aria-hidden="true"
 					>
 						<circle cx="12" cy="12" r="10" />
 						<path d="m15 9-6 6" />

@@ -47,7 +47,7 @@ export default function CarouselDemo({
 		}
 
 		let start = Math.max(0, current - 2)
-		let end = Math.min(totalPhotos, start + maxDots)
+		const end = Math.min(totalPhotos, start + maxDots)
 
 		if (end - start < maxDots) {
 			start = Math.max(0, end - maxDots)
@@ -62,14 +62,14 @@ export default function CarouselDemo({
 		<div className="group relative">
 			<Carousel setApi={setApi} className="w-full">
 				<CarouselContent>
-					{photos.map((photo, index) => (
-						<CarouselItem key={index}>
+					{photos.map((photo, idx) => (
+						<CarouselItem key={photo}>
 							<div className={`${aspectClass} overflow-hidden rounded-xl`}>
 								<img
 									src={photo}
-									alt={`Foto ${index + 1}`}
+									alt={`Foto ${idx + 1}`}
 									className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
-									loading={index === 0 ? "eager" : "lazy"}
+									loading={idx === 0 ? "eager" : "lazy"}
 								/>
 							</div>
 						</CarouselItem>
@@ -96,6 +96,7 @@ export default function CarouselDemo({
 				<div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5">
 					{getDotIndices().map((dotIndex) => (
 						<button
+							type="button"
 							key={dotIndex}
 							onClick={(e) => {
 								e.preventDefault()

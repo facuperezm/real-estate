@@ -2,7 +2,7 @@
 import "photoswipe/style.css"
 import Layout from "@/layouts/Layout.astro"
 import { api } from "@/lib/api"
-import Map from "@/components/map"
+import PropertyMap from "@/components/map"
 import HeartButton from "@/components/HeartButton"
 
 const { id } = Astro.params
@@ -169,7 +169,7 @@ const formattedPrice = property?.price
 
 				<section class="py-8">
 					<h3 class="mb-4 text-xl font-semibold text-airbnb-gray-500">Ubicacion</h3>
-					<Map location={property?.localization} client:load />
+					<PropertyMap location={property?.localization} client:load />
 				</section>
 			</div>
 

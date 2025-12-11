@@ -21,6 +21,7 @@ export default function HeartButton({ className = "", propertyId }: HeartButtonP
 
 	return (
 		<button
+			type="button"
 			onClick={handleClick}
 			className={`group/heart rounded-full p-2 transition-transform hover:scale-110 active:scale-95 ${className}`}
 			aria-label={isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}
