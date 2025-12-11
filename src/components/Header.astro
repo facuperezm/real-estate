@@ -1,30 +1,72 @@
 ---
-import Alquileres from "@/components/icons/Alquileres.astro"
 import Logo from "@/components/icons/Logo.astro"
-import Ventas from "@/components/icons/Ventas.astro"
+import SearchBar from "@/components/SearchBar.astro"
 ---
 
-<header class="mx-auto flex max-w-5xl flex-row justify-between p-4">
-	<!-- <img alt="" src="../images/logo.png" class="w-16" /> -->
-	<a href="/">
-		<Logo class="size-14 pl-2" />
-	</a>
-	<nav aria-label="Main navigation">
-		<ul class="ml-auto flex flex-row gap-4">
-			<li
-				class="flex flex-col items-center justify-center text-xs font-medium text-black/60 hover:text-black"
+<header id="main-header" class="sticky top-0 z-50 bg-white transition-shadow duration-200">
+	<div class="mx-auto flex max-w-[1760px] items-center justify-between px-6 py-4 md:px-10 lg:px-20">
+		<a
+			href="/"
+			class="flex items-center gap-1 text-coral transition-opacity hover:opacity-90"
+			aria-label="Ir al inicio"
+		>
+			<Logo class="size-8" />
+			<span class="hidden text-xl font-semibold text-coral lg:block">inmobiliaria</span>
+		</a>
+
+		<div class="flex flex-1 justify-center px-4 md:px-8 lg:px-16">
+			<SearchBar />
+		</div>
+
+		<nav aria-label="Main navigation" class="flex items-center gap-2">
+			<a
+				href="#"
+				class="hidden rounded-full px-4 py-3 text-sm font-medium text-airbnb-gray-500 transition-colors hover:bg-airbnb-gray-50 md:block"
 			>
-				<Alquileres class="mb-2 text-black/60 hover:text-black" />
-				Alquileres
-			</li>
-			<li
-				class="flex flex-col items-center justify-center text-xs font-medium text-black/60 hover:text-black"
+				Publica tu propiedad
+			</a>
+			<button
+				class="flex items-center gap-3 rounded-full border border-airbnb-gray-200 py-2 pl-3 pr-2 transition-shadow hover:shadow-airbnb-card"
+				aria-label="Menu de usuario"
 			>
-				<Ventas class="mb-2 text-black/60 hover:text-black" />
-				Ventas
-			</li>
-			<!-- <li class="hover:bg-slate-200"><World /></li> -->
-		</ul>
-	</nav>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 32 32"
+					class="size-4 text-airbnb-gray-500"
+					fill="currentColor"
+					aria-hidden="true"
+				>
+					<path d="M4 7h24v2H4zm0 8h24v2H4zm0 8h24v2H4z"></path>
+				</svg>
+				<div class="rounded-full bg-airbnb-gray-400 p-1">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 32 32"
+						class="size-6 text-white"
+						fill="currentColor"
+						aria-hidden="true"
+					>
+						<path
+							d="M16 1a15 15 0 1 1 0 30 15 15 0 0 1 0-30zm0 2a13 13 0 0 0-9.19 22.19A8.99 8.99 0 0 1 16 20a8.99 8.99 0 0 1 9.19 5.19A13 13 0 0 0 16 3zm0 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"
+						></path>
+					</svg>
+				</div>
+			</button>
+		</nav>
+	</div>
 </header>
-<hr class="w-full" />
+
+<script>
+	const header = document.getElementById("main-header")
+	let lastScroll = 0
+
+	window.addEventListener("scroll", () => {
+		const currentScroll = window.scrollY
+		if (currentScroll > 10) {
+			header?.classList.add("shadow-airbnb-header")
+		} else {
+			header?.classList.remove("shadow-airbnb-header")
+		}
+		lastScroll = currentScroll
+	})
+</script>
