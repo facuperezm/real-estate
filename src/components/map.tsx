@@ -13,14 +13,13 @@ interface MapProps {
 
 const DEFAULT_LOCATION = {
 	lat: -25.618745,
-	lng: -54.57684, // IGR location
+	lng: -54.57684,
 }
 
 const DEFAULT_CONTAINER_STYLE = {
 	width: "100%",
 	height: "400px",
-	borderRadius: "6px",
-	boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+	borderRadius: "12px",
 }
 
 export default function Map({ location, zoom = 14, height = "400px" }: MapProps) {
@@ -28,16 +27,57 @@ export default function Map({ location, zoom = 14, height = "400px" }: MapProps)
 		googleMapsApiKey: import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY,
 	})
 
-	// Handle loading state
 	if (!isLoaded) {
-		return <div>Loading...</div>
+		return (
+			<div
+				className="flex animate-skeleton items-center justify-center rounded-xl bg-airbnb-gray-100"
+				style={{ height }}
+			>
+				<div className="flex flex-col items-center gap-3">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						strokeWidth="1.5"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+						className="size-8 text-airbnb-gray-300"
+					>
+						<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+						<circle cx="12" cy="10" r="3" />
+					</svg>
+					<span className="text-sm text-airbnb-gray-300">Cargando mapa...</span>
+				</div>
+			</div>
+		)
 	}
 
-	// Handle error state
 	if (loadError) {
 		return (
-			<div className="flex h-[400px] items-center justify-center rounded-lg border border-red-200 bg-red-50 p-4 text-red-800">
-				<p>Error al cargar el mapa. Por favor, intente nuevamente más tarde.</p>
+			<div
+				className="flex items-center justify-center rounded-xl border border-airbnb-gray-200 bg-airbnb-gray-50"
+				style={{ height }}
+			>
+				<div className="flex flex-col items-center gap-3 px-4 text-center">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						strokeWidth="1.5"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+						className="size-8 text-airbnb-gray-300"
+					>
+						<circle cx="12" cy="12" r="10" />
+						<path d="m15 9-6 6" />
+						<path d="m9 9 6 6" />
+					</svg>
+					<p className="text-sm text-airbnb-gray-400">
+						No se pudo cargar el mapa. Intenta nuevamente mas tarde.
+					</p>
+				</div>
 			</div>
 		)
 	}
@@ -56,7 +96,7 @@ export default function Map({ location, zoom = 14, height = "400px" }: MapProps)
 	}
 
 	return (
-		<div className="relative">
+		<div className="relative overflow-hidden rounded-xl">
 			<GoogleMap
 				zoom={zoom}
 				center={markerPosition}
@@ -66,6 +106,13 @@ export default function Map({ location, zoom = 14, height = "400px" }: MapProps)
 					streetViewControl: false,
 					mapTypeControl: false,
 					fullscreenControl: false,
+					styles: [
+						{
+							featureType: "poi",
+							elementType: "labels",
+							stylers: [{ visibility: "off" }],
+						},
+					],
 				}}
 			>
 				{location?.lat && location?.lon && (
