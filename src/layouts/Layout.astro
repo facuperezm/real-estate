@@ -2,6 +2,7 @@
 import { ViewTransitions } from "astro:transitions"
 import Footer from "@/components/Footer.astro"
 import Header from "@/components/Header.astro"
+import "@fontsource-variable/montserrat"
 
 interface Props {
 	title: string
@@ -12,27 +13,35 @@ const { title, description } = Astro.props
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
 		<meta name="robots" content="nofollow, noindex" />
+		<meta name="theme-color" content="#FF385C" />
 		<title transition:animate="slide">{title}</title>
 		<slot name="preload" />
 		<ViewTransitions />
 	</head>
-	<body>
+	<body class="flex min-h-screen flex-col">
 		<Header transition:persist />
-		<main transition:animate="fade">
+		<main transition:animate="fade" class="flex-1">
 			<slot />
 		</main>
 		<Footer transition:persist />
 		<style is:global>
 			html {
-				font-family: "Montserrat", system-ui, sans-serif;
-				font-size: 15px;
+				font-family: "Montserrat Variable", system-ui, sans-serif;
+				font-size: 14px;
+				scroll-behavior: smooth;
+			}
+
+			@media (min-width: 768px) {
+				html {
+					font-size: 15px;
+				}
 			}
 		</style>
 	</body>
