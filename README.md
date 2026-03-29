@@ -4,7 +4,7 @@ A modern real estate platform built with Astro and Contentful, designed to provi
 
 [![Live Website](https://img.shields.io/badge/▶️-Live_Website-blue?style=for-the-badge)](https://inmobiliaria.facupm.dev)
 
-![App Screenshot](./public/screenshots.png)
+![App Screenshot](./public/screenshots.webp)
 
 ## 🚀 Quick Start
 
